@@ -12,15 +12,15 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="bg-blue-500 p-4 text-white">
+        <nav className="p-4 absolute text-black z-10 w-screen flex flex-row">
             <Link to="/" className="mr-4">Home</Link>
             {user ? (
                 <>
                     <Link to={`/${user?.type}/dashboard`} className="mr-4">Dashboard</Link>
-                    <button onClick={handleLogout}>Sign Out</button>
+                    <button className='ml-auto' onClick={handleLogout}>Sign Out</button>
                 </>
             ) : (
-                <Link to="/login">Login</Link>
+                <Link className='ml-auto' to="/login">Login</Link>
             )}
         </nav>
     );

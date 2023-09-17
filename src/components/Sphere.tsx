@@ -39,7 +39,7 @@ const Sphere = ({ vertexShader, fragmentShader, position, radius, side = THREE.F
 
 
   return (
-    <mesh ref={meshRef} position={position} receiveShadow castShadow>
+    <mesh ref={meshRef} position={position}>
       <sphereBufferGeometry attach="geometry" args={[radius, 64, 64]} />
       <shaderMaterial
         ref={materialRef}
