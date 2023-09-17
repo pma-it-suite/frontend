@@ -3,15 +3,12 @@
 import React, { useRef, useEffect } from "react";
 import { Canvas, useFrame, useThree, extend } from "react-three-fiber";
 import * as THREE from 'three';
-import useComposer from "../useComposer";
+import useComposer from "@/useComposer";
 import Sphere from "./Sphere";
 import fragment from "../shader/fragment";
 import fragment1 from "../shader/fragment1";
 import vertex from "../shader/vertex";
 import Plane from "./Plane";
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
-extend({ TextGeometry })
 
 const SceneContent = () => {
     const { scene, camera, gl } = useThree();

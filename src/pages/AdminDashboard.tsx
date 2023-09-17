@@ -24,6 +24,7 @@ const AdminDashboard: React.FC = () => {
     if (response.data.status === 'OK') {
       // Refresh the list of users after successfully adding a new user
       setUsers([...users, response.data.newUser]);
+      setDataLoaded(true);
     }
   };
 
@@ -70,7 +71,7 @@ const AdminDashboard: React.FC = () => {
         <h2 className="bg-gray-500 text-sm text-gray-100 font-light px-6 rounded-full mb-2">Tenant: {user.tenant_id}</h2>
         <h2 className="bg-gray-500 text-gray-100 font-light px-6 rounded-full text-sm ml-10 mb-2">Subscription: {user.subscription_id}</h2>
       </div>
-      <table className="min-w-full bg-white mt-12 p-6 rounded-xl shadow-2xl border-none">
+      <table className={`min-w-full bg-white mt-12 p-6 rounded-xl shadow-2xl border-none ${dataLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-700`}>
         <thead className="text-black rounded-xl text-left">
           <tr className='font-medium font-4xl border-b-2'>
             <th className="w-1/3 px-4 rounded-tl-xl">Username</th>
