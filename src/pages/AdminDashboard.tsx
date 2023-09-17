@@ -7,6 +7,8 @@ const AdminDashboard: React.FC = () => {
   const [newUsername, setNewUsername] = useState('');
   const [newUserType, setNewUserType] = useState('user');
   const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const [dataLoaded, setDataLoaded] = useState(false);
+
 
   const handleAddUser = async (e: FormEvent) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const batchCommand = async (user_id: string, command : string) => {
+  const batchCommand = async (user_id: string, command: string) => {
     console.log(user_id, command);
     const data = {
       user_id,
@@ -62,28 +64,35 @@ const AdminDashboard: React.FC = () => {
     fetchData();
   }, []);
   return (
-    <div className="mx-auto p-6 h-full">
-      <h1 className="text-3xl mb-6 text-gray-700">Admin Dashboard</h1>
-      <h2 className="text-lg mb-2 text-gray-600">Tenant: {user.tenant_id}</h2>
-      <h2 className="text-lg mb-4 text-gray-600">Subscription: {user.subscription_id}</h2>
-
-      <table className="min-w-full bg-white mt-4 p-6 rounded-lg shadow-lg">
-        <thead className="bg-gray-800 text-white">
-          <tr>
-            <th className="w-1/3 py-2 px-4">Username</th>
+    <div className="mx-auto p-6 pt-40 h-full flex flex-col items-center">
+      <h1 className="text-8xl font-bold mb-6">Your Devices</h1>
+      <div className='flex flex-row items-center'>
+        <h2 className="bg-gray-500 text-sm text-gray-100 font-light px-6 rounded-full mb-2">Tenant: {user.tenant_id}</h2>
+        <h2 className="bg-gray-500 text-gray-100 font-light px-6 rounded-full text-sm ml-10 mb-2">Subscription: {user.subscription_id}</h2>
+      </div>
+      <table className="min-w-full bg-white mt-12 p-6 rounded-xl shadow-2xl border-none">
+        <thead className="text-black rounded-xl text-left">
+          <tr className='font-medium font-4xl border-b-2'>
+            <th className="w-1/3 px-4 rounded-tl-xl">Username</th>
             <th className="w-1/3 py-2 px-4">Type</th>
             <th className="w-1/3 py-2 px-4">Id</th>
             <th className="w-1/3 py-2 px-4">Devices</th>
-            <th className="w-1/3 py-2 px-4">Actions</th>
+            <th className="w-1/3 py-2 px-4 rounded-tr-xl">Actions</th>
           </tr>
         </thead>
         <tbody className="text-gray-700">
           {users.map((user, index) => (
             <tr key={index}>
-              <td className="py-2 px-4 border">{user?.username}</td>
-              <td className="py-2 px-4 border">{user?.type}</td>
-              <td className="py-2 px-4 border">{user?._id}</td>
-              <td className="py-2 px-4 border">
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
+                {user?.username}
+              </td>
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
+                {user?.type}
+              </td>
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
+                {user?._id}
+              </td>
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
                 {user?.devices?.map((deviceId) => (
                   <div key={deviceId}>
                     <li>
@@ -92,7 +101,7 @@ const AdminDashboard: React.FC = () => {
                   </div>
                 ))}
               </td>
-              <td className="py-2 px-4 border">
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
                 {user?.devices?.length && <form onSubmit={(e) => handleSubmit(e, user._id)} className='flex flex-row'>
                   <input
                     name="command"
@@ -100,7 +109,7 @@ const AdminDashboard: React.FC = () => {
                     className="mr-2 p-1 rounded-md border-gray-200 border-2"
                     placeholder="Enter command"
                   />
-                  <button type="submit" className="bg-blue-500 text-white p-2 rounded-md ml-">
+                  <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
                     Batch
                   </button>
                 </form>}
@@ -110,7 +119,7 @@ const AdminDashboard: React.FC = () => {
         </tbody>
       </table>
 
-      <form
+      {/* <form
         onSubmit={handleAddUser}
         className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center mt-10"
       >
@@ -146,7 +155,7 @@ const AdminDashboard: React.FC = () => {
         >
           Add User
         </button>
-      </form>
+      </form> */}
     </div>
   );
 };
