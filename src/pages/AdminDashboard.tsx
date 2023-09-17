@@ -71,22 +71,28 @@ const AdminDashboard: React.FC = () => {
 
 
       <table className="min-w-full bg-white mt-4 p-6 rounded-xl shadow-lg border-none">
-        <thead className="bg-gray-800 rounded-xl text-white">
+        <thead className="bg-gray-800 text-white rounded-xl">
           <tr>
-            <th className="w-1/3 py-2 px-4">Username</th>
+            <th className="w-1/3 py-2 px-4 rounded-tl-xl">Username</th>
             <th className="w-1/3 py-2 px-4">Type</th>
             <th className="w-1/3 py-2 px-4">Id</th>
             <th className="w-1/3 py-2 px-4">Devices</th>
-            <th className="w-1/3 py-2 px-4">Actions</th>
+            <th className="w-1/3 py-2 px-4 rounded-tr-xl">Actions</th>
           </tr>
         </thead>
-        <tbody className="text-gray-700 rounded-lg">
+        <tbody className="text-gray-700">
           {users.map((user, index) => (
             <tr key={index}>
-              <td className="py-2 px-4 border">{user?.username}</td>
-              <td className="py-2 px-4 border">{user?.type}</td>
-              <td className="py-2 px-4 border">{user?._id}</td>
-              <td className="py-2 px-4 border">
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
+                {user?.username}
+              </td>
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
+                {user?.type}
+              </td>
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
+                {user?._id}
+              </td>
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
                 {user?.devices?.map((deviceId) => (
                   <div key={deviceId}>
                     <li>
@@ -95,7 +101,7 @@ const AdminDashboard: React.FC = () => {
                   </div>
                 ))}
               </td>
-              <td className="py-2 px-4 border">
+              <td className="py-2 px-4 border-b"> {/* Added border-b */}
                 {user?.devices?.length && <form onSubmit={(e) => handleSubmit(e, user._id)} className='flex flex-row'>
                   <input
                     name="command"
@@ -103,7 +109,7 @@ const AdminDashboard: React.FC = () => {
                     className="mr-2 p-1 rounded-md border-gray-200 border-2"
                     placeholder="Enter command"
                   />
-                  <button type="submit" className="bg-blue-500 text-white p-2 rounded-md ml-">
+                  <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
                     Batch
                   </button>
                 </form>}
@@ -112,6 +118,7 @@ const AdminDashboard: React.FC = () => {
           ))}
         </tbody>
       </table>
+
 
       <form
         onSubmit={handleAddUser}

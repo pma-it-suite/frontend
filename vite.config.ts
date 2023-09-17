@@ -7,7 +7,6 @@ export default defineConfig({
     alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
   },
   plugins: [react()],
-  root: "src",
   build: {
     outDir: "/var/www/html",
   }
