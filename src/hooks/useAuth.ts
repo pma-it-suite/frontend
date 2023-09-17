@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,12 +13,12 @@ const useAuth = () => {
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-  },[]);
+  }, []);
 
   const signIn = async (username: string) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/users/check`,
+        `http://172.178.91.48:5001/users/check`,
         {
           params: { username },
         }
