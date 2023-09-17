@@ -7,6 +7,8 @@ const AdminDashboard: React.FC = () => {
   const [newUsername, setNewUsername] = useState('');
   const [newUserType, setNewUserType] = useState('user');
   const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const [dataLoaded, setDataLoaded] = useState(false);
+
 
   const handleAddUser = async (e: FormEvent) => {
     e.preventDefault();
@@ -62,18 +64,16 @@ const AdminDashboard: React.FC = () => {
     fetchData();
   }, []);
   return (
-    <div className="mx-auto p-6 pt-20 h-full flex flex-col items-center">
+    <div className="mx-auto p-6 pt-40 h-full flex flex-col items-center">
       <h1 className="text-8xl font-bold mb-6">Your Devices</h1>
       <div className='flex flex-row items-center'>
         <h2 className="bg-gray-500 text-sm text-gray-100 font-light px-6 rounded-full mb-2">Tenant: {user.tenant_id}</h2>
         <h2 className="bg-gray-500 text-gray-100 font-light px-6 rounded-full text-sm ml-10 mb-2">Subscription: {user.subscription_id}</h2>
       </div>
-
-
-      <table className="min-w-full bg-white mt-4 p-6 rounded-xl shadow-lg border-none">
-        <thead className="bg-gray-800 text-white rounded-xl">
-          <tr>
-            <th className="w-1/3 py-2 px-4 rounded-tl-xl">Username</th>
+      <table className="min-w-full bg-white mt-12 p-6 rounded-xl shadow-2xl border-none">
+        <thead className="text-black rounded-xl text-left">
+          <tr className='font-medium font-4xl border-b-2'>
+            <th className="w-1/3 px-4 rounded-tl-xl">Username</th>
             <th className="w-1/3 py-2 px-4">Type</th>
             <th className="w-1/3 py-2 px-4">Id</th>
             <th className="w-1/3 py-2 px-4">Devices</th>
@@ -119,8 +119,7 @@ const AdminDashboard: React.FC = () => {
         </tbody>
       </table>
 
-
-      <form
+      {/* <form
         onSubmit={handleAddUser}
         className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center mt-10"
       >
@@ -156,7 +155,7 @@ const AdminDashboard: React.FC = () => {
         >
           Add User
         </button>
-      </form>
+      </form> */}
     </div>
   );
 };
