@@ -3,9 +3,7 @@
 @tailwind utilities;
 
 
-body {
-  overflow: hidden;
-}
+
 @keyframes textFade {
   0% { color: white; }
   100% { color: black; }

@@ -1,39 +1,16 @@
-import React, { useState, FormEvent } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '@/hooks/useAuth';
 
 const Login: React.FC = () => {
-    const navigate = useNavigate();
     const [username, setUsername] = useState('');
+    const navigate = useNavigate();
+    const { signIn, user } = useAuth();
 
-    const handleLogin = async (event: FormEvent) => {
-        event.preventDefault();
-
-        try {
-            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/check`, {
-                params: {
-                    username
-                },
-                validateStatus(status) {
-                    return (status >= 200 && status < 300) || status === 404;
-                },
-            });
-
-            if (response.data.status === 'OK') {
-                localStorage.setItem('user', JSON.stringify(response.data.user)); // Save to local storage
-                if (response.data.user.type === 'admin') {
-                    navigate('/admin/dashboard');
-                } else {
-                    navigate('/user/dashboard');
-                }
-            } else {
-                alert('Username is not valid');
-            }
-        } catch (error) {
-            console.error('Error while checking username:', error);
-            alert('An error occurred while checking the username.');
-        }
-    };
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        signIn(username);
+      };
 
     return (
         <div className="flex flex-col justify-center items-center h-screen w-screen">
@@ -41,7 +18,7 @@ const Login: React.FC = () => {
             <p className="text-lg text-center mb-10 mx-4">
                 Enter your username to log in.
             </p>
-            <form className="mb-6 flex flex-col items-center justify-center" onSubmit={handleLogin}>
+            <form className="mb-6 flex flex-col items-center justify-center" onSubmit={handleSubmit}>
                 <div>
                     <input
                         type="text"
