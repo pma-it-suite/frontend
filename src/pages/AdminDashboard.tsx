@@ -25,7 +25,7 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const batchCommand = async (user_id: string, command : string) => {
+  const batchCommand = async (user_id: string, command: string) => {
     console.log(user_id, command);
     const data = {
       user_id,
@@ -62,13 +62,16 @@ const AdminDashboard: React.FC = () => {
     fetchData();
   }, []);
   return (
-    <div className="mx-auto p-6 h-full">
-      <h1 className="text-3xl mb-6 text-gray-700">Admin Dashboard</h1>
-      <h2 className="text-lg mb-2 text-gray-600">Tenant: {user.tenant_id}</h2>
-      <h2 className="text-lg mb-4 text-gray-600">Subscription: {user.subscription_id}</h2>
+    <div className="mx-auto p-6 pt-20 h-full flex flex-col items-center">
+      <h1 className="text-8xl font-bold mb-6">Your Devices</h1>
+      <div className='flex flex-row items-center'>
+        <h2 className="bg-gray-500 text-sm text-gray-100 font-light px-6 rounded-full mb-2">Tenant: {user.tenant_id}</h2>
+        <h2 className="bg-gray-500 text-gray-100 font-light px-6 rounded-full text-sm ml-10 mb-2">Subscription: {user.subscription_id}</h2>
+      </div>
 
-      <table className="min-w-full bg-white mt-4 p-6 rounded-lg shadow-lg">
-        <thead className="bg-gray-800 text-white">
+
+      <table className="min-w-full bg-white mt-4 p-6 rounded-xl shadow-lg border-none">
+        <thead className="bg-gray-800 rounded-xl text-white">
           <tr>
             <th className="w-1/3 py-2 px-4">Username</th>
             <th className="w-1/3 py-2 px-4">Type</th>
@@ -77,7 +80,7 @@ const AdminDashboard: React.FC = () => {
             <th className="w-1/3 py-2 px-4">Actions</th>
           </tr>
         </thead>
-        <tbody className="text-gray-700">
+        <tbody className="text-gray-700 rounded-lg">
           {users.map((user, index) => (
             <tr key={index}>
               <td className="py-2 px-4 border">{user?.username}</td>

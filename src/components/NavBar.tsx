@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="p-4 absolute text-black z-10 w-screen flex flex-row">
+        <nav className="p-4 absolute text-black text-lg font-medium z-10 w-screen flex flex-row">
             <Link to="/" className="mr-4">Home</Link>
             {user ? (
                 <>
