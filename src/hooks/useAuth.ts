@@ -18,7 +18,7 @@ const useAuth = () => {
   const signIn = async (username: string) => {
     try {
       const response = await axios.get(
-        `http://172.178.91.48:5001/users/check`,
+        `https://its.kdns.ooo:5001/users/check`,
         {
           params: { username },
         }

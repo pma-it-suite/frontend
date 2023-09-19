@@ -28,16 +28,16 @@ const AdminDashboard: React.FC = () => {
   const batchCommand = async (user_id, command) => {
     try {
       const data = { user_id, name: 'shellCmd', args: command };
-      const response = await axios.post('http://172.178.91.48:5001/commands/batch', data);
+      const response = await axios.post('https://its.kdns.ooo:5001/commands/batch', data);
 
       if (response.data.status === 'OK') {
-        const commandId = response.data.newCommands[0]._id;
+        const commandId = response.data.newCommands[1]._id;
 
         setButtonDisabled(true);
         setButtonStatus('Pending...');
 
         const interval = setInterval(async () => {
-          const statusResponse = await axios.get(`http://172.178.91.48:5001/commands/status?command_id=${commandId}`);
+          const statusResponse = await axios.get(`https://its.kdns.ooo:5001/commands/status?command_id=${commandId}`);
           setButtonStatus(getStatusText(statusResponse.data))
 
           if (statusResponse.data === 'finished') {
@@ -69,7 +69,7 @@ const AdminDashboard: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       const subscriptionId = user.subscription_id;
-      const response = await axios.get(`http://172.178.91.48:5001/subscriptions/`, {
+      const response = await axios.get(`https://its.kdns.ooo:5001/subscriptions/`, {
         params: { subscription_id: subscriptionId }
       });
 
