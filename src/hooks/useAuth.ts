@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { URL } from "../util/constants";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
+  const routeUrl = URL;
 
   const navigate = useNavigate();
 
@@ -17,12 +19,9 @@ const useAuth = () => {
 
   const signIn = async (username: string) => {
     try {
-      const response = await axios.get(
-        `http://172.178.91.48:5001/users/check`,
-        {
-          params: { username },
-        }
-      );
+      const response = await axios.get(`${routeUrl}/users/check`, {
+        params: { username },
+      });
 
       if (response.data.status === "OK") {
         const userData = response.data.user;
