@@ -1,9 +1,6 @@
 name: Deploy to Server
 
-on:
-  push:
-    branches:
-      - main # or any branch of your choice
+on: [push, pull_request]
 
 jobs:
   deploy:
@@ -18,4 +15,4 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh -o StrictHostKeyChecking=no adminuser@172.178.91.48 'sudo systemctl restart frontend.service'
+          ssh -o StrictHostKeyChecking=no adminuser@itx.kdns.ooo 'sudo systemctl restart frontend.service'
