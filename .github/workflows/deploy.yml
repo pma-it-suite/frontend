@@ -1,9 +1,6 @@
 name: Deploy to Server
 
-on:
-  push:
-    branches:
-      - main # or any branch of your choice
+on: [push, pull_request]
 
 jobs:
   deploy:
