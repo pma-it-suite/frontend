@@ -41,8 +41,8 @@ const Plane = ({ fadeDuration, bufferTime }: PlaneProps) => {
     }, []);
 
     return (
-        <mesh position={[0, 0, 0.5]}>
-            <planeBufferGeometry attach="geometry" args={[4, 4]} />
+        <mesh position={[0, 0, 2]}>
+            <planeBufferGeometry attach="geometry" args={[7, 7]} />
             <meshBasicMaterial
                 ref={materialRef}
                 attach="material"

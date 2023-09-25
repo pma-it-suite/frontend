@@ -1,49 +1,70 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ThreeScene from "@/components/ThreeScene";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-
-  const goToLogin = () => {
-    navigate("/login");
-  };
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      document.getElementById('background-container')?.classList.add('fade');
-    }, 1000); // animation starts after 1 second
-
-    const text1 = document.querySelector('.text-1');
-    const text2 = document.querySelector('.text-2');
-
-    const interval = setInterval(() => {
-      text1?.classList.toggle('hidden');
-      text2?.classList.toggle('hidden');
-    }, 2000);
-
-    return () => {
-      clearTimeout(timeout);
-      clearInterval(interval);
-    };
-  }, []);
+  const [loginClicked, setLoginClicked] = useState(false);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
-      <ThreeScene />
-      <div className="w-screen h-screen top-0 left-0 absolute flex flex-col items-center justify-center ">
-        <h1 id="kdns-text" className='z-[1] text-8xl font-bold p-0 m-0 text-white -mt-20'>ITx</h1>
-        <div className="absolute fade-out w-screen h-screen bg-black" />
-        <p className="text-3xl text-center mt-6 mb-10 mx-4 font-bold z-10">
-          An all inclusive IT admin plaform. <a href='https://shellhacks2023.blob.core.windows.net/pkgs/ITX_s.pkg' className='underline cursor-pointer'>Install</a> now.
-        </p>
+    <div className="relative h-screen w-screen overflow-hidden flex flex-col items-center justify-center">
+      <ThreeScene loginClicked={loginClicked} />
+      <div className="absolute fade-out pointer-events-none w-screen h-screen bg-black z-40" />
+      <div className="absolute">
+        {!loginClicked && <div className={`flex flex-col items-center justify-center ${loginClicked ? 'opacity-0' : 'opacity-100'}`}>
+          <h1 id="kdns-text" className='text-8xl font-bold p-0 m-0 text-white -mt-20 z-50'>ITx</h1>
+
+          <p className="text-3xl text-center mt-6 mb-10 mx-4 font-bold ">
+            An all inclusive IT admin plaform. <a href='https://shellhacks2023.blob.core.windows.net/pkgs/ITX_s.pkg' className='underline cursor-pointer'>Install</a> now.
+          </p>
+          <button
+            onClick={setLoginClicked.bind(null, true)}
+            className="px-20 mt-40 py-4 text-black font-semibold bg-white hover:bg-gray-200 rounded opacity-70 shadow-md"
+          >
+            Login
+          </button>
+        </div>}
+        {loginClicked && <div className={`flex flex-col items-center justify-center ${loginClicked ? 'opacity-100' : 'opacity-0'}`}>
+          <div>
+            <button
+              onClick={setLoginClicked.bind(null, false)}
+              className="text-white font-semibold bg-blue-500 hover:bg-blue-700 py-2 px-8 rounded"
+            >
+              Back
+            </button>
+          </div>
+          <h1>Login</h1>
+          <div>
+            <input
+              type="text"
+              placeholder="Email"
+              className="p-2 w-64 border rounded"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Password"
+              className="p-2 w-64 border rounded"
+            />
+          </div>
+          <div>
+            <label>Remember me</label>
+            <input
+              type="checkbox"
+              className="p-2 border rounded"
+            />
+          </div>
+          <button
+            onClick={navigate.bind(null, '/dashboard')}
+            className="text-white font-semibold bg-blue-500 hover:bg-blue-700 py-2 px-8 rounded mt-8"
+          >
+            Login
+          </button>
+        </div>
+        }
       </div>
-      <button
-        onClick={goToLogin}
-        className="text-white font-semibold bg-blue-500 hover:bg-blue-700 py-2 px-8 rounded"
-      >
-        Login
-      </button>
+
     </div>
   );
 }

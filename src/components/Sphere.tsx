@@ -2,9 +2,8 @@ import React, { useRef, useMemo, useEffect } from 'react';
 import { useFrame, useThree } from "react-three-fiber";
 import * as THREE from 'three';
 
-const Sphere = ({ vertexShader, fragmentShader, position, radius, side = THREE.FrontSide, cursorMovement = false }: { vertexShader: string, fragmentShader: string, position: THREE.Vector3, radius: number, side?: THREE.Side, cursorMovement?: boolean }) => {
+const Sphere = React.forwardRef(({ vertexShader, fragmentShader, position, radius, side = THREE.FrontSide, cursorMovement = false }: { vertexShader: string, fragmentShader: string, position: THREE.Vector3, radius: number, side?: THREE.Side, cursorMovement?: boolean }, meshRef : THREE.Mesh ) => {
   const materialRef = useRef<THREE.ShaderMaterial | null>(null);
-  const meshRef = useRef<THREE.Mesh>(null);
   const { camera, gl } = useThree();
   const uniforms = useMemo(() => ({ time: { value: 0 } }), []);
 
@@ -51,6 +50,6 @@ const Sphere = ({ vertexShader, fragmentShader, position, radius, side = THREE.F
       />
     </mesh>
   );
-};
+});
 
 export default Sphere;

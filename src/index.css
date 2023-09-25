@@ -12,11 +12,17 @@
   animation: textFade 3s forwards;
   animation-delay: 2s;
 }
-@keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+.fade-out {
+  animation: fadeOut 3s forwards 1s;
 }
 
-.fade-out {
-  animation: fadeOut 4s forwards 1s;
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
