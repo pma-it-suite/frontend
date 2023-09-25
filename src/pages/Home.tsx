@@ -35,7 +35,7 @@ const Home: React.FC = () => {
         <h1 id="kdns-text" className='z-[1] text-8xl font-bold p-0 m-0 text-white -mt-20'>ITx</h1>
         <div className="absolute fade-out w-screen h-screen bg-black" />
         <p className="text-3xl text-center mt-6 mb-10 mx-4 font-bold z-10">
-          An all inclusive IT admin plaform. <a href='https://shellhacks2023.blob.core.windows.net/pkgs/ITX_s.pkg' className='underline cursor-pointer'>Install</a> now.
+          An all inclusive IT admin plaformx. <a href='https://shellhacks2023.blob.core.windows.net/pkgs/ITX_s.pkg' className='underline cursor-pointer'>Install</a> now.
         </p>
       </div>
       <button
