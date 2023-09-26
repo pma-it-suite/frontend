@@ -1,1 +1,1 @@
-export const URL = "https://its.kdns.ooo:8080";
+export const URL = "https://itx.kdns.ooo:5001";
