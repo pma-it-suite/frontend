@@ -1,13 +1,10 @@
 import React, { useEffect, useState, FormEvent } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { URL } from '../util/constants';
 
 const AdminDashboard: React.FC = () => {
   const routeUrl = URL;
   const [users, setUsers] = useState<any[]>([]);
-  const [newUsername, setNewUsername] = useState('');
-  const [newUserType, setNewUserType] = useState('user');
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -84,6 +81,7 @@ const AdminDashboard: React.FC = () => {
 
     fetchData();
   }, []);
+  
   return (
     <div className="mx-auto p-6 pt-40 h-full flex flex-col items-center">
       <h1 className="text-8xl font-bold mb-6">Your Devices</h1>

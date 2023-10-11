@@ -12,8 +12,11 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className="p-4 absolute text-black text-lg font-medium z-10 w-screen flex flex-row">
-            <Link to="/" className="mr-4">Home</Link>
+        <nav className="p-5 absolute text-black text-lg font-medium z-10 flex flex-row backdrop-blur-xl shadow-md mt-6 rounded-md w-11/12">
+            <Link to="/" className="mr-4">
+
+                Home
+            </Link>
             {user ? (
                 <>
                     <Link to={`/${user?.type}/dashboard`} className="mr-4">Dashboard</Link>

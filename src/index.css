@@ -2,21 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @keyframes textFade {
-  0% { color: white; }
-  100% { color: black; }
+  0% {
+    color: white;
+  }
+  100% {
+    color: black;
+  }
 }
 #kdns-text {
   animation: textFade 3s forwards;
   animation-delay: 2s;
 }
 @keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .fade-out {
   animation: fadeOut 4s forwards 1s;
+}
+:root {
+  --color-bg-primary: #ffffff;
+  --color-bg-primary-light: #f5f5f5;
+  --color-bg-secondary: #f5f6f8;
+  --color-bg-secondary-light: #e6e6e6;
+  --color-text-primary: #000014;
+  --color-text-secondary: #4f4d72;
+  --color-border-primary: #e6e6e6;
+  --color-border-secondary: #f0f1f3;
+  --color-bg-accent: #65ad77;
+}
+
+.dark {
+  --color-bg-primary: #3e554e; /* Darker primary color */
+  --color-bg-primary-light: #51685c;
+  --color-bg-secondary: #1a261e; /* Darker secondary color */
+  --color-bg-secondary-light: #2a4127;
+  --color-text-primary: #ffffff;
+  --color-border-primary: #36463c;
+  --color-border-secondary: #333354;
+  --color-bg-accent: #d39a36;
+}
+body {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-primary);
+}
+.link-underline {
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#000, #fff);
+  background-size: 0 3px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-in-out;
+}
+
+.link-underline:hover {
+  background-size: 100% 3px;
+  background-position: 0 100%;
+}
+
+.underlined {
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#000, #fff);
+  background-repeat: no-repeat;
+  transition: background-size 0.5s ease-in-out;
+  background-size: 100% 3px;
+  background-position: 0 100%;
 }
